@@ -1,0 +1,17 @@
+version: '3.4'
+services:
+  printer_1:
+    image: octoprint/octoprint
+    restart: always 
+    ports:
+      - 5000:5000
+      - 8000:8080
+    devices:
+      - /dev/ttyACM0:/dev/ttyACM0
+    volumes:
+      - printer_1:/octoprint # Octoprint installation folder
+      # Store .stl files here, can be shared between multiple printers if more are added later
+      - shared_volume:/shared 
+volumes:
+  printer_1:
+  shared_volume:
